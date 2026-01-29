@@ -1,0 +1,29 @@
+# Logs
+logs/*.log
+logs/*.jsonl
+*.log
+
+# Configuration files with sensitive data (optional - uncomment if needed)
+# config/config.json
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE specific files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# PHP specific
+vendor/
+composer.phar
+
+# Session files
+sessions/
+tmp/
