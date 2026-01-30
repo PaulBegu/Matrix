@@ -133,6 +133,26 @@ $displayLabel = $userDisplayName ?: ($activeUserId ? "UserID: {$activeUserId}" :
             border-radius: 4px;
             font-family: 'Consolas', monospace;
         }
+    
+        .nav-actions { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .nav-btn {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: .2px;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(255,255,255,.12);
+            color: #fff;
+            transition: transform .12s ease, background .12s ease;
+        }
+        .nav-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.18); }
+        .nav-btn.primary { background: rgba(0,123,255,.35); border-color: rgba(0,123,255,.55); }
+        .nav-btn.primary:hover { background: rgba(0,123,255,.45); }
+        .hint { margin-top: 14px; font-size: 0.95rem; color: rgba(255,255,255,.85); }
+        .hint code { background: rgba(0,0,0,.25); padding: 2px 6px; border-radius: 6px; }
+
     </style>
 </head>
 <body>
@@ -149,7 +169,13 @@ $displayLabel = $userDisplayName ?: ($activeUserId ? "UserID: {$activeUserId}" :
                 <span style="color: #ef4444;">Nu ești autentificat</span>
             <?php endif; ?>
         </div>
-        
+
+        <div class="nav-actions">
+            <a class="nav-btn primary" href="matrix.php?user_id=<?=h($activeUserId ?? '')?>">Deschide Matricea</a>
+            <a class="nav-btn" href="lookup_api.php?user_id=<?=h($activeUserId ?? '')?>&type=positions" target="_blank">Test API (positions)</a>
+        </div>
+        <div class="hint">Pentru login: adaugă <code>?user_id=XXX</code> în URL.</div>
+
         <!-- <p class="info-text">
             Pentru autentificare, accesează cu parametrul: <code>?user_id=XXX</code>
         </p> -->
