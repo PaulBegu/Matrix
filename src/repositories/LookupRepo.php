@@ -38,7 +38,7 @@ final class LookupRepo {
         $sql = "
             SELECT id
             FROM doc_skill_matrix_det
-            WHERE pozitie_id = $1 AND linie_id = $2
+            WHERE pozitii_de_lucru = $1 AND nom_productie_linii_id = $2
             ORDER BY id
             LIMIT 1
         ";

@@ -67,6 +67,7 @@ try {
         }
 
         $payload = [
+            'id_parinte'   => $skillDetId,
             'skill_det_id' => $skillDetId,
             'angajat_id'   => $angajatId,
             'pozitie_id'   => $pozitieId,
@@ -75,7 +76,7 @@ try {
             'status_nou'   => $statusNou,
             'motiv'        => ($motiv === '') ? null : $motiv,
             'observatii'   => ($obs === '') ? null : $obs,
-            'facut_de'     => (int)$activeUserId,
+            'creat_de'     => (int)$activeUserId,
         ];
 
         $id = EventsRepo::insertEvent($payload);

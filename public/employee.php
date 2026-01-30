@@ -42,10 +42,10 @@ $empRow = dbFetchOne("
 // Latest statuses for this employee on selected line
 $latestRows = dbFetchAll("
     SELECT DISTINCT ON (e.pozitie_id)
-        e.pozitie_id, e.status_nou, e.actiune, e.facut_la
-    FROM dock_skill_matrix_event e
+        e.pozitie_id, e.status_nou, e.actiune, e.creat_la
+    FROM doc_skill_matrix_event e
     WHERE e.angajat_id = $1 AND e.linie_id = $2
-    ORDER BY e.pozitie_id, e.facut_la DESC, e.id DESC
+    ORDER BY e.pozitie_id, e.creat_la DESC, e.id DESC
 ", [$angajatId, $linieId]);
 $map = [];
 foreach ($latestRows as $r) $map[(int)$r['pozitie_id']] = $r;
@@ -108,7 +108,7 @@ foreach ($latestRows as $r) $map[(int)$r['pozitie_id']] = $r;
               <td><?=h((string)$p['denumire'])?></td>
               <td><span class="<?=h(SkillStatusService::cssClassForStatus($st))?>"><?=h(SkillStatusService::labelForStatus($st))?></span></td>
               <td><?=h((string)($r['actiune'] ?? ''))?></td>
-              <td><?=h((string)($r['facut_la'] ?? ''))?></td>
+              <td><?=h((string)($r['creat_la'] ?? ''))?></td>
             </tr>
           <?php endforeach; ?>
           </tbody>
