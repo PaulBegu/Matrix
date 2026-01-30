@@ -33,7 +33,7 @@ if ($linieId === 0 && count($lines) > 0) $linieId = (int)$lines[0]['id'];
 
 $empRow = dbFetchOne("
     SELECT id,
-           COALESCE(NULLIF(denumire,''), NULLIF(nume_complet,''), NULLIF(TRIM(COALESCE(prenume,'') || ' ' || COALESCE(nume,'')), ''), CONCAT('ID ', id::text)) AS denumire
+           COALESCE(NULLIF(TRIM(COALESCE(prenume,'') || ' ' || COALESCE(nume,'')), ''), CONCAT('ID ', id::text)) AS denumire
     FROM nom_sal_personal_angajat
     WHERE id = $1
     LIMIT 1

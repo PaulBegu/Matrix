@@ -16,21 +16,19 @@ final class LookupRepo {
     }
 
     public static function getEmployees(string $q = ''): array {
-        // Try to be robust to different column names used in your DB.
+        // nom_sal_personal_angajat: prenume + nume (no denumire/nume_complet)
         $sql = "
             SELECT
                 id,
                 COALESCE(
-                    NULLIF(denumire,''),
-                    NULLIF(nume_complet,''),
                     NULLIF(TRIM(COALESCE(prenume,'') || ' ' || COALESCE(nume,'')), ''),
                     CONCAT('ID ', id::text)
                 ) AS denumire
             FROM nom_sal_personal_angajat
             WHERE ($1 = '' OR
-                   COALESCE(denumire, nume_complet, prenume, '') ILIKE '%'||$1||'%' OR
+                   COALESCE(prenume,'') ILIKE '%'||$1||'%' OR
                    COALESCE(nume,'') ILIKE '%'||$1||'%')
-            ORDER BY denumire
+            ORDER BY 2
             LIMIT 500
         ";
         return dbFetchAll($sql, [$q]);
